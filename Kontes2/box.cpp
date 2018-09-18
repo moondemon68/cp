@@ -3,15 +3,11 @@
 using namespace std;
 
 int main () {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
 	int n;
 	cin >> n;
-	vector<int> ans;
-	ans.push_back(0);
+	int ans=0,cur=1;
 	stack<int> a;
-	for (int i=1;i<=2*n;i++) {
+	for (int i=1;i<=n+n;i++) {
 		string s;
 		cin >> s;
 		if (s=="add") {
@@ -19,22 +15,17 @@ int main () {
 			cin >> x;
 			a.push(x);
 		} else {
-			ans.push_back(a.top());
-			a.pop();
-		}
-	}
-	int out=0;
-	for (int i=1;i<=n;i++) {
-		if (ans[i]!=i) {
-			out++;
-			for (int j=i+1;j<=n;j++) {
-				if (ans[j]==i) {
-					swap(ans[i],ans[j]);
-					break;
+			if (!a.empty()) {
+				if (a.top()!=cur) {
+					ans++;
+					//cout << ans << endl;
+					while (!a.empty()) a.pop();
+				} else {
+					a.pop();
 				}
 			}
+			cur++;
 		}
 	}
-	cout << out << endl;
-	return 0;
+	cout << ans << endl;
 }
