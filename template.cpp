@@ -4,7 +4,8 @@
 #define pb push_back
 #define mp make_pair
 #define MOD 1000000007
-#define pii pair<int,int> 
+#define pii pair<int,int>
+#define LL long long
 
 using namespace std;
 
