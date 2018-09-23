@@ -10,6 +10,12 @@
 using namespace std;
 
 int main () {
-    
+    int n;
+    cin >> n;
+    for (int i=1;i<=n;i++) {
+      long long q;
+      cin >> q;
+      cout << ((q/3)*2+(q%3!=0)) << endl;
+    }
     return 0;
 }
