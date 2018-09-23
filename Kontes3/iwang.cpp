@@ -17,7 +17,7 @@ int main () {
     LL ans=0;
     sort (a+1,a+n+1);
     for (int i=1;i<=n;i++) {
-      ans+=(i+1)*a[i];
+      ans+=(LL)(i+1)*a[i];
     }
     ans-=a[n];
     cout <<ans << endl;
