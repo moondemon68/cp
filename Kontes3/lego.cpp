@@ -16,14 +16,18 @@ int main () {
       LL x1,y1,x2,y2,k;
       scanf("%lld%lld%lld%lld%lld",&x1,&y1,&x2,&y2,&k);
       //cin >> x1 >> y1 >> x2 >> y2 >> k;
-      LL x=(x2-x1);
-      LL y=(y2-y1);
+      LL x=abs(x2-x1);
+      LL y=abs(y2-y1);
+      //cout << x << y << endl;
       if (x<y) swap(x,y);
-      if ((x%2==0&&y%2==1)||(x%2==1&&y%2==0)) {
-        k--; x--;
+      if (x%2!=y%2) {
+        k--;
+        x--;
       }
-      else if ((x%2==0&&k%2==1)||(x%2==1&&k%2==0)) {
-        x--; y--;k-=2;
+      else if (x%2!=k%2) {
+        x--;
+        y--;
+        k-=2;
       }
       if (k<x) printf("-1\n");
       else printf("%lld\n",k);
