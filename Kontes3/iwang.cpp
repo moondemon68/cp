@@ -16,12 +16,10 @@ int main () {
     for (int i=1;i<=n;i++) cin >> a[i];
     LL ans=0;
     sort (a+1,a+n+1);
-    reverse(a+1,a+n+1);
     for (int i=1;i<=n;i++) {
-      if (i==1||i==2) ans+=n*a[i];
-      else ans+=a[i]*(n-i+2);
-      //cout << ans << endl;
+      ans+=(i+1)*a[i];
     }
+    ans-=a[n];
     cout <<ans << endl;
     return 0;
 }
