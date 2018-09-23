@@ -24,9 +24,7 @@ int main () {
       return 0;
     }
     n--;
-    n%=MOD;
     m--;
-    m%=MOD;
-    cout << poww((LL)2,n*m);
+    cout << poww(poww((LL)2,n),m) << endl;
     return 0;
 }
