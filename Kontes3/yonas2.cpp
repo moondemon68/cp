@@ -1,11 +1,5 @@
-#include <bits/stdc++.h>
-#define fi first
-#define se second
-#define pb push_back
-#define mp make_pair
-#define MOD 1000000007
-#define pii pair<int,int>
-#define LL long long
+#include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -18,6 +12,10 @@ int main () {
     while (tc--) {
       int n;
       scanf("%d",&n);
+      if (n==0) {
+        printf("10\n");
+        continue;
+      }
       if (n==1) {
         printf("1\n");
         continue;
