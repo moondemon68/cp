@@ -44,6 +44,6 @@ int main () {
         printf("%d\n",ans[x]);
       } else printf("%lld\n",(x-11)*49+292);
     }
-    
+
     return 0;
 }

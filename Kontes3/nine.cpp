@@ -33,6 +33,7 @@ int main () {
       else cout << i << " " << ans1 << endl;
     }
     */
+
     if (n<5) {
       cout << n*(n-1)/2 << endl;
       return 0;
@@ -46,24 +47,16 @@ int main () {
       if (n>num) p=i;
       num*=10;
     }
-    int q=0;
-    if (p==1) q=9;
-    else if (p==2) q=99;
-    else if (p==3) q=999;
-    else if (p==4) q=9999;
-    else if (p==5) q=99999;
-    else if (p==6) q=999999;
-    else if (p==7) q=9999999;
-    else if (p==8) q=99999999;
-    else if (p==9) q=999999999;
+    int q=poww(10,p)-1;
     int ans=0;
     int x=poww(10,p);
-    while (q<(2*n-1)) {
+    while (q<=(2*n-1)) {
         if (n>=q) ans+=q/2;
         else ans+=(n-q/2);
-        //cout << q << endl;
+        //cout << ans << endl;
         q+=x;
     }
     cout << ans << endl;
+
     return 0;
 }
