@@ -35,6 +35,7 @@ int main () {
       cout << ans.size() << endl;
     }
     */
+
     int ans[12]={0,4,10,20,35,56,83,116,155,198,244,292};
     for (int t=1;t<=tc;t++) {
       LL x;
@@ -43,5 +44,6 @@ int main () {
         printf("%d\n",ans[x]);
       } else printf("%lld\n",(x-11)*49+292);
     }
+    
     return 0;
 }
