@@ -15,11 +15,11 @@ int main () {
     cout.tie(NULL);
     LL n,m;
     cin >> n >> m;
-    LL g=0,ans=0;
-    for (int i=1;i*i<=min(n,m);i++) {
-      if (n%i==0&&m%i==0) {
-        g=i;
-        ans=max(ans,2*g+n/g+m/g);
+    LL ans=2000000000000000000;
+    for (int i=1;i*i<=n+m;i++) {
+      cout << i << endl;
+      if ((n+m)%i==0) {
+        ans=min(ans,2*(i+(n+m)/i));
       }
     }
     cout << ans << endl;
