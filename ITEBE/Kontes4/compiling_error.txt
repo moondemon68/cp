@@ -1,4 +1,0 @@
-C:\Users\Morgen\Documents\GitHub\cp\ITEBE\Kontes4\segment.cpp: In function 'int main()':
-C:\Users\Morgen\Documents\GitHub\cp\ITEBE\Kontes4\segment.cpp:16:5: error: 'coba' was not declared in this scope
-     coba compileError;
-     ^~~~
