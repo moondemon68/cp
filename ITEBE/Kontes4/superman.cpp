@@ -15,9 +15,9 @@ int main () {
     cout.tie(NULL);
     int n,h;
     cin >> n >> h;
-    
+
     for (int i=1;i<=n;i++) cin >> a[i] >> b[i];
-    
+
     d[0]=0; //tinggi turun
     for (int i=1;i<n;i++) {
     	d[i]+=a[i+1]-b[i];

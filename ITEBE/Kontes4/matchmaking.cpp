@@ -20,9 +20,9 @@ int main () {
       int x,y;
       char c;
       cin >> x >> y >> c;
-      if (c=='M'&&y<=a) {
+      if (c=='M') {
         m.pb(mp(y,x));
-      } else if (c=='F'&&y<=b) {
+      } else if (c=='F') {
         f.pb(mp(y,x));
       }
     }
