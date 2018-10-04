@@ -44,19 +44,37 @@ int main () {
 
     if (m.size()>1) {
       for (int i=0;i<m.size();i++) {
-        for (int j=i+1;j<m.size();j++) {
-          if (m[i].fi+m[j].fi>a) break;
-          else ans=max(ans,m[i].se+m[j].se);
+        int l=0,h=m.size()-1,c=l;
+        while(l<=h) {
+          int mid=(l+h)/2;
+          if (m[i].fi+m[mid].fi>a) {
+            h=mid-1;
+          } else {
+            c=mid;
+            l=mid+1;
+          }
         }
+        if (m[i].fi==m[c].fi&&m[i].se==m[c].se) c--;
+        if (c<0||m[i].fi+m[c].fi>a) continue;
+        ans=max(ans,m[i].se+m[c].se);
       }
     }
 
     if (f.size()>1) {
       for (int i=0;i<f.size();i++) {
-        for (int j=i+1;j<f.size();j++) {
-          if (f[i].fi+f[j].fi>b) break;
-          else ans=max(ans,f[i].se+f[j].se);
+        int l=0,h=f.size()-1,c=l;
+        while(l<=h) {
+          int mid=(l+h)/2;
+          if (f[i].fi+f[mid].fi>b) {
+            h=mid-1;
+          } else {
+            c=mid;
+            l=mid+1;
+          }
         }
+        if (f[i].fi==f[c].fi&&f[i].se==f[c].se) c--;
+        if (c<0||f[i].fi+f[c].fi>b) continue;
+        ans=max(ans,f[i].se+f[c].se);
       }
     }
 
