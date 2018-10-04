@@ -9,23 +9,24 @@
 
 using namespace std;
 
-LL a[1000005];
+int a[1000005];
 
 int main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    LL n,b,c;
+    LL n;
+    int b,c;
     cin >> n >> b >> c;
-    for (LL i=1;i<=n;i++) cin >> a[i];
+    for (int i=1;i<=n;i++) cin >> a[i];
     sort (a+1,a+n+1);
     LL ans=0;
-    for (LL i=1;i<=n;i++) {
-      LL l=i,r=n,cand=l;
+    a[0]=0;
+    for (int i=1;i<=n;i++) {
+      int l=0,r=n,cand=l;
       while (l<=r) {
-        LL m=(l+r)/2;
-        LL d=a[m]/b-a[i]/b;
-        if (a[i]%b==0) d++;
+        int m=(l+r)/2;
+        int d=a[m]/b-(a[i]-1)/b;
         if (d<c) {
           l=m+1;
         } else if (d>c) {
@@ -35,12 +36,30 @@ int main () {
           l=m+1;
         }
       }
-      //cout << i << " " << cand << endl;
-      for (int j=i;j<=cand;j++) {
-        LL d=a[j]/b-(a[i]-1)/b;
-        if (d==c) ans++;
+      int candl=0;
+      l=0;r=n;
+      while (l<=r) {
+        int m=(l+r)/2;
+        int d=a[m]/b-(a[i]-1)/b;
+        if (d<c) {
+          candl=m;
+          l=m+1;
+        } else if (d>=c) {
+          r=m-1;
+        }
       }
+      //cout << i << " " << candl << " " << cand << endl;
+      ans+=(LL)max(cand-candl,0);
+      //cout << i << " " << cand << endl;
+      //for (int j=i;j<=cand;j++) {
+      //  LL d=a[j]/b-(a[i]-1)/b;
+      //  if (d==c) ans++;
+      //}
     }
     cout << ans << endl;
     return 0;
 }
+/*
+9 3 2
+1 2 3 4 5 6 7 8 9
+*/
