@@ -16,6 +16,7 @@ int main () {
     int n,a,b;
     cin >> n >> a >> b;
     vector<pii> m,f;
+    vector<int> mm,mf;
     for (int i=1;i<=n;i++) {
       int x,y;
       char c;
@@ -31,13 +32,16 @@ int main () {
 
     int maxm=-1,maxf=-1;
     for (int i=0;i<m.size();i++) {
-      //cout << m[i].fi << " " << m[i].se << endl;
       if (m[i].fi<=a) maxm=max(maxm,m[i].se);
+      if (i>0) mm.pb(max(m[i].se,mm[i-1]));
+      else mm.pb(m[i].se);
     }
-    //cout << endl;
+    for (int i=0;i<mm.size();i++) cout << mm[i] << " ";
+    cout << endl;
     for (int i=0;i<f.size();i++) {
-      //cout << f[i].fi << " " << f[i].se << endl;
       if (f[i].fi<=b) maxf=max(maxf,f[i].se);
+      if (i>0) mf.pb(max(f[i].se,f[i-1].se));
+      else mf.pb(f[i].se);
     }
     int ans=0;
     if (maxm>-1&&maxf>-1) ans=maxm+maxf;
@@ -54,9 +58,11 @@ int main () {
             l=mid+1;
           }
         }
+        cout << i << c << endl;
+        if (i==c) continue;
         if (m[i].fi==m[c].fi&&m[i].se==m[c].se) c--;
         if (c<0||m[i].fi+m[c].fi>a) continue;
-        ans=max(ans,m[i].se+m[c].se);
+        ans=max(ans,m[i].se+mm[c]);
       }
     }
 
@@ -74,10 +80,18 @@ int main () {
         }
         if (f[i].fi==f[c].fi&&f[i].se==f[c].se) c--;
         if (c<0||f[i].fi+f[c].fi>b) continue;
-        ans=max(ans,f[i].se+f[c].se);
+        ans=max(ans,f[i].se+mf[c]);
       }
     }
 
     cout << ans << endl;
     return 0;
 }
+/*
+5 15 3
+1 6 M
+1 5 M
+1 9 M
+4 8 M
+5 7 M
+*/
