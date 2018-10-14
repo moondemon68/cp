@@ -26,11 +26,11 @@ int main () {
         a.pb(x);
       }
       sort (a.begin(),a.end());
-      reverse(a.begin(),a.end());
+      //reverse(a.begin(),a.end());
       LL ans=1;
       for (int i=0;i<a.size();i+=2) {
         if (a[i]==a[i+1]) {
-          LL d=cnt[a[i]]*(cnt[a[i]]-1)/2;
+          LL d=(cnt[a[i]]-1);
           d%=MOD;
           ans*=d;
           ans%=MOD;
