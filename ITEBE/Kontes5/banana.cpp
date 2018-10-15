@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
-#define fi first.first
-#define se first.second
-#define num second
+#define fi first
+#define se second
 #define pb push_back
 #define mp make_pair
 #define MOD 1000000007
@@ -25,6 +24,8 @@ int main () {
     cout.tie(NULL);
     cin >> n >> m;
     char a[105][105];
+    int vis[105][105];
+    memset (vis,-1,sizeof(vis));
     for (int i=1;i<=n;i++) {
       string s;
       cin >> s;
@@ -32,37 +33,6 @@ int main () {
         a[i][j]=s[j-1];
       }
     }
-    queue<pair<pii,int>> q;
-    for (int i=1;i<=n;i++) {
-      for (int j=1;j<=m;j++) {
-        if (a[i][j]=='B') q.push(mp(mp(i,j),1));
-      }
-    }
-    int ans=0;
-    while (!q.empty()) {
-      pair<pii,int> cur=mp(mp(q.front().fi,q.front().se),q.front().num);
-      q.pop();
-      for (int i=0;i<8;i++) {
-        int nx=cur.fi+x[i],ny=cur.se+y[i];
-        if (inside(nx,ny)) {
-          if (cur.num==1&&a[nx][ny]=='A') {
-            q.push(mp(mp(nx,ny),2));
-          }
-          else if (cur.num==2&&a[nx][ny]=='N') {
-            q.push(mp(mp(nx,ny),3));
-          }
-          else if (cur.num==3&&a[nx][ny]=='A') {
-            q.push(mp(mp(nx,ny),4));
-          }
-          else if (cur.num==4&&a[nx][ny]=='N') {
-            q.push(mp(mp(nx,ny),5));
-          }
-          else if (cur.num==5&&a[nx][ny]=='A') {
-            ans++;
-          }
-        }
-      }
-    }
-    cout << ans << endl;
+
     return 0;
 }

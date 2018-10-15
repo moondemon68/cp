@@ -26,7 +26,7 @@ int main () {
         a.pb(x);
       }
       sort (a.begin(),a.end());
-      //reverse(a.begin(),a.end());
+      reverse(a.begin(),a.end());
       LL ans=1;
       for (int i=0;i<a.size();i+=2) {
         if (a[i]==a[i+1]) {
