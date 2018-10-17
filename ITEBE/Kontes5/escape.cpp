@@ -34,36 +34,35 @@ int main () {
       }
     }
     deque<pii> q;
-    vis[1][1]=1;
-    //int p=0;
+    q.push_front(mp(1,1));
+    vis[1][1]=0;
     while (!q.empty()) {
       pii cur=q.front();
+      //cout << cur.fi << " " << cur.se <<" " << a[cur.fi][cur.se] << vis[cur.fi][cur.se] << endl;
       q.pop_front();
-      for (int i=0;i<4;i++) {
-        int nx=cur.fi+x[i],ny=cur.se+y[i];
-        if (inside(nx,ny)) {
-          //p++;
-          if (a[nx][ny]!=a[cur.fi][cur.se]) {
-            if (vis[nx][ny]>vis[cur.fi][cur.se]+1) {
-              vis[nx][ny]=vis[cur.fi][cur.se]+1;
-              q.push_back(mp(nx,ny));
-            }
+      for (int p=0;p<4;p++) {
+        int nx=cur.fi+x[p],ny=cur.se+y[p];
+        //cout << cur.fi << " " << cur.se << " " << nx << " " << ny << endl;
+        if (inside(nx,ny)&&vis[nx][ny]>vis[cur.fi][cur.se]) {
+          if (a[nx][ny]==a[cur.fi][cur.se]) {
+            vis[nx][ny]=vis[cur.fi][cur.se];
+            q.push_front(mp(nx,ny));
+          } else if (a[nx][ny]!=a[cur.fi][cur.se]){
+            vis[nx][ny]=vis[cur.fi][cur.se]+1;
+            q.push_back(mp(nx,ny));
           }
-          else {
-            if (vis[nx][ny]>vis[cur.fi][cur.se]) {
-              vis[nx][ny]=vis[cur.fi][cur.se];
-              q.push_front(mp(nx,ny));
+          /*for (int i=1;i<=n;i++) {
+            for (int j=1;j<=m;j++) {
+              if (vis[i][j]>=0) cout << " ";
+              cout << vis[i][j];
             }
+            cout << endl;
           }
+          cout << endl;*/
         }
       }
-      if (vis[n][m]!=INT_MAX) break;
     }
-    //cout << p << endl;
-    for (int i=1;i<=n;i++) {
-      for (int j=1;j<=m;j++) cout << vis[i][j] << ' ';
-      cout << endl;
-    }
-    cout << vis[n][m]-1 << endl;
+    
+    cout << vis[n][m] << endl;
     return 0;
 }

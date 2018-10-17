@@ -9,68 +9,80 @@
 
 using namespace std;
 
-bool y[30],d[105],valid=1;
-vector<string> a;
-vector<char> ans[105];
+stack<int> ans;
+int vis[30];
+bool cycle=0;
+vector<int> adj[30];
 
-void check(vector<string> a,int p) {
-  vector<string> same;
-  for (int i=0;i<a.size()-1;i++) {
-    //cout << p << a[i] << d[i] << endl;
-    if (a[i][p]==a[i+1][p]) {
-      same.pb(a[i]);
-      d[i]=0;
-      if (!y[a[i][p]-'a']) {
-        //ans[p].pb(a[i][p]);
-        //y[a[i][p]-'a']=1;
-      }
-    } else if (a[i][p]!=a[i+1][p]) {
-      if (same.size()>0) {
-        same.pb(a[i]);
-        same.pb(".");
-        check(same,p+1);
-        same.clear();
-      }
-      if (!y[a[i][p]-'a']&&!d[i]) {
-        //cout <<1<< a[i] << endl;
-        ans[p].pb(a[i][p]);
-        y[a[i][p]-'a']=1;
-        d[i]=1;
-      }
-      else if (y[a[i][p]-'a']) {
-        cout << "Impossible" << endl;
-        valid=0;
-      }
-    }
+void toposort(int x) {
+  vis[x]=1;
+  for (int j=0;j<adj[x].size();j++) {
+    if (vis[adj[x][j]]==0) {
+      vis[adj[x][j]]=1;
+      toposort(adj[x][j]);
+    } else if (vis[adj[x][j]]==1) cycle=1;
   }
+  ans.push(x);
+  vis[x]=2;
 }
 
 int main () {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
     int n;
     cin >> n;
+    char a[105][105];
+    for (int i=0;i<=100;i++) {
+      for (int j=0;j<=100;j++) {
+        a[i][j]='{';
+      }
+    }
     for (int i=1;i<=n;i++) {
       string s;
       cin >> s;
-      a.pb(s);
-    }
-    memset (y,0,sizeof(y));
-    memset (d,0,sizeof(d));
-    a.pb(".");
-    check(a,0);
-    if (valid) {
-      for (int i=0;i<100;i++) {
-        for (int j=0;j<ans[i].size();j++) cout << ans[i][j];
+      for (int j=0;j<s.size();j++) {
+        a[i][j+1]=s[j];
       }
-      string g="";
-      for (int i=0;i<26;i++) {
-        if (!y[i]) g+=(char)i+'a';
-      }
-      cout << g;
     }
-
+    /*
+    for (int i=1;i<=n;i++) {
+      for (int j=1;j<=10;j++) cout << a[i][j];
+      cout << endl;
+    }
+    */
+    for (int p=1;p<=100;p++) {
+      for (int i=1;i<n;i++) {
+        if (a[i][p]==a[i+1][p]) continue;
+        for (int j=i+1;j<=n;j++) {
+          //if (a[i][p]==a[j][p]||a[j][p]=='.') continue;
+          bool s=1;
+          for (int k=1;k<=p;k++) {
+            if (a[i][p-k]!=a[j][p-k]) s=0;
+          }
+          if (s) {
+            adj[a[i][p]-'a'+1].pb(a[j][p]-'a'+1);
+            break;
+          }
+        }
+      }
+    }
+    /*
+    for (int i=1;i<=26;i++) {
+      if (adj[i].size()>0) {
+        printf("%c ",i+'a'-1);
+        for (int j=0;j<adj[i].size();j++) printf("%c ",adj[i][j]+'a'-1);
+        cout << endl;
+      }
+    }
+    */
+    memset (vis,0,sizeof(vis));
+    for (int i=1;i<=26;i++) {
+      if (!vis[i]) toposort(i);
+    }
+    string answer="";
+    while (!ans.empty()) {
+      answer+=ans.top()+'a'-1;
+      ans.pop();
+    }
+    if (cycle||answer.size()==27) cout << "Impossible" << endl; else cout << answer << endl;
     return 0;
 }
 /*
@@ -87,4 +99,7 @@ wiguna
 novanto
 wiguna
 norman
+2
+xyz
+xy
 */
