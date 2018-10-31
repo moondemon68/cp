@@ -12,11 +12,7 @@ using namespace std;
 int main () {
     int a,b,r;
     cin >> a >> b >> r;
-    int ans=1;
-    ans*=(a/(r*2));
-    ans*=(b/(r*2));
-    if (a%(r*2)==0||b%(r*2)==0) ans++;
-    if (ans%2==0) cout << "Irfan"; else cout << "Iwang";
+    if (2*r>a||2*r>b) cout << "Irfan"; else cout << "Iwang";
     cout << endl;
     return 0;
 }

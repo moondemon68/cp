@@ -1,0 +1,3 @@
+C:\Users\Morgen\Documents\GitHub\cp\Codeforces\tesc.cpp:17:1: error: expected initializer before 'int'
+ int main () {
+ ^~~

@@ -29,5 +29,3 @@ int main () {
 	}
 	cout << ans << endl;
 }
-
->>>>>>> 106bd58850b0dc9b6316114b36530ef09c5c5c2d
