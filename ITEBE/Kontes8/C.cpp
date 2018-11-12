@@ -33,14 +33,11 @@ int main () {
       d.push(mp(0,s));
       while (!d.empty()) {
         pii cur=d.top();
-        //cout << cur.fi << " " << cur.se << " *" << endl;
         d.pop();
         for (int i=0;i<adj[cur.se].size();i++) {
           pii next=adj[cur.se][i];
-          //cout << next.fi << " " << next.se << endl;
           if (vis[cur.se]+next.fi<vis[next.se]) {
             vis[next.se]=vis[cur.se]+next.fi;
-            //cout << next.se << " " << vis[next.se] << endl;
             d.push(mp(vis[next.se],next.se));
           }
         }
