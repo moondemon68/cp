@@ -1,17 +1,17 @@
 #include <bits/stdc++.h>
+#define MOD 1000000007
 
 using namespace std;
 
 int main () {
-	int a[1005];
-	for (int i=0;i<=1000;i++) a[i]=1000000007;
 	int n,h,l;
 	cin >> n >> h >> l;
 	vector<int> adj[1005];
 	for (int i=1;i<=h;i++) {
 		int x;
 		cin >> x;
-		a[x]=0;
+		adj[n].push_back(x);
+		adj[x].push_back(n);
 	}
 	for (int i=1;i<=l;i++) {
 		int x,y;
@@ -19,21 +19,29 @@ int main () {
 		adj[x].push_back(y);
 		adj[y].push_back(x);
 	}
-	for (int i=0;i<n;i++) {
-		if (a[i]==0) continue;
-		if (adj[i].empty()) continue;
-		int worst=10000008;
-		for (int j=0;j<adj[i].size();j++) {
-			worst=min(worst,a[adj[i][j]]);
+	int vis[1005];
+	memset (vis,-1,sizeof(vis));
+	queue<int> q;
+	vis[n]=0;
+	q.push(n);
+	while (!q.empty()) {
+		int cur=q.front();
+		q.pop();
+		for (int i=0;i<adj[cur].size();i++) {
+			int next=adj[cur][i];
+			if (vis[next]==-1) {
+				vis[next]=vis[cur]+1;
+				q.push(next);
+			}
 		}
-		if (worst==10000008) continue;
-		else a[i]=worst+1;
 	}
-	int ans=0,ansval=-1;
 	for (int i=0;i<n;i++) {
-		//cout << a[i] << " ";
-		if (a[i]>ansval) {
-			ansval=a[i];
+		if (vis[i]==-1) vis[i]=MOD;
+	}
+	int ans=0,cntans=0;
+	for (int i=0;i<n;i++) {
+		if (vis[i]>cntans) {
+			cntans=vis[i];
 			ans=i;
 		}
 	}
