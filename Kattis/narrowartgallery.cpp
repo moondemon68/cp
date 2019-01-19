@@ -11,15 +11,18 @@ using namespace std;
 
 int a[205],b[205],dp[205][2][2][205];
 int solve(int pos,int cana,int canb,int rem) {
-    if (pos==0&&rem>0) return -1*MOD;
+    if (pos==0&&rem!=0) return -1*MOD;
     if (pos==0&&rem==0) return 0;
     if (dp[pos][cana][canb][rem]!=-1) return dp[pos][cana][canb][rem];
     if (cana==1&&canb==1) {
-        return dp[pos][cana][canb][rem]=max(solve(pos-1,1,1,rem),max(solve(pos-1,0,1,rem-1)+a[i],solve(pos-1,1,0,rem-1)+b[i]));
+        return dp[pos][cana][canb][rem]=max(solve(pos-1,1,1,rem)+a[pos]+b[pos],max(solve(pos-1,0,1,rem-1)+b[pos],solve(pos-1,1,0,rem-1)+a[pos]));
     } 
-    if (cana==0&&canb==1) {
-        return dp[pos][cana][canb][rem]=max(solve(pos-1,0,1,rem),max(solve(pos-1,0,1,rem-1)+a[i],solve(pos-1,1,0,rem-1)+b[i]));
+    else if (cana==0&&canb==1) {
+        return dp[pos][cana][canb][rem]=max(solve(pos-1,1,1,rem)+a[pos]+b[pos],solve(pos-1,0,1,rem-1)+b[pos]);
     }
+    else if (cana==1&&canb==0) {
+        return dp[pos][cana][canb][rem]=max(solve(pos-1,1,1,rem)+a[pos]+b[pos],solve(pos-1,1,0,rem-1)+a[pos]);
+    } 
 }
 
 int main () {
