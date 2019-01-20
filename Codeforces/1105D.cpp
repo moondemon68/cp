@@ -47,7 +47,7 @@ int main () {
         turn++;
         if (turn>p) turn-=p;
         if (q[turn].empty()) continue;
-        //cerr << turn << endl;
+        cerr << turn << endl;
         bool y=1;
         while (y) {
             pii cur=q[turn].front();
@@ -82,7 +82,7 @@ int main () {
         }
         //cerr << q[turn].size() << endl;
         if (q[turn].size()==0) done.insert(turn);
-        /*
+        
         for (int i=1;i<=n;i++) {
             for (int j=1;j<=m;j++) {
                 cerr << a[i][j];
@@ -90,7 +90,7 @@ int main () {
             }
             cerr << endl;
         }
-        */
+        
     }
     int cnt[10];
     memset (cnt,0,sizeof(cnt));
