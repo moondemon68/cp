@@ -20,7 +20,7 @@ int main () {
     for (int i=1;i<=n;i++) cin >> a[i].se >> a[i].fi;
     sort (a+1,a+n+1);
     priority_queue<LL> p;
-    LL ans=1000000000000000;
+    LL ans=1000000000000000000;
     LL h=0,w=0;
     for (int i=1;i<=n;i++) {
         h=a[i].fi;
