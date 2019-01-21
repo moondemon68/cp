@@ -13,16 +13,17 @@ int main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n;
-    cin >> n;
-    stack<int> a;
-    for (int i=1;i<=n;i++) {
-      int x;
-      cin >> x;
-      if (!a.empty()&&(a.top()+x)%2==0) {
-        a.pop();
-      }  else a.push(x);
+    int tc;
+    cin >> tc;
+    while (tc--) {
+        LL p,r,f;
+        cin >> p >> r >> f;
+        int ans=0;
+        while (p<=f) {
+            ans++;
+            p*=r;
+        }
+        cout << ans << endl;
     }
-    cout << a.size() << endl;
     return 0;
 }

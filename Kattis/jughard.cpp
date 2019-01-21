@@ -13,16 +13,13 @@ int main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n;
-    cin >> n;
-    stack<int> a;
-    for (int i=1;i<=n;i++) {
-      int x;
-      cin >> x;
-      if (!a.empty()&&(a.top()+x)%2==0) {
-        a.pop();
-      }  else a.push(x);
-    }
-    cout << a.size() << endl;
+    int tc;
+    cin >> tc;
+    while (tc--)  {
+        int a,b,d;
+        cin >> a >> b >> d;
+        int x=__gcd(a,b);
+        if (d%x==0) cout << "Yes" << endl; else cout << "No" << endl;
+    }   
     return 0;
 }
