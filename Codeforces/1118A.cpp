@@ -13,7 +13,16 @@ int main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    
+    int q;
+    cin >> q;
+    while (q--) {
+        LL n,a,b;
+        cin >> n >> a >> b;
+        LL ans=(n/2)*b;
+        if(n%2==1) ans+=a;
+        ans=min(ans,n*a);
+        cout << ans << endl;
+    }
     cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
 }
