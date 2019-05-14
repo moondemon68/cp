@@ -13,7 +13,18 @@ int main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    
+    string s;
+    cin >> s;
+    int pref[105];
+    pref[0]=0;
+    for (int i=1;i<=s.size();i++) {
+        if (s[i-1]=='Q') pref[i]=pref[i-1]+1; else pref[i]=pref[i-1];
+    }
+    int ans=0;
+    for (int i=1;i<=s.size();i++) {
+        if (s[i-1]=='A') ans+=pref[i-1]*(pref[s.size()]-pref[i-1]);
+    }
+    cout << ans << endl;
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
 }
