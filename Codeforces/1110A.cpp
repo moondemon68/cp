@@ -16,12 +16,16 @@ int main () {
     int b,k;
     cin >> b >> k;
     bool p=0;
+    int a[k+5];
     for (int i=1;i<=k;i++) {
-        int x;
-        cin >> x;
-        if (x%2==1) {
-            if (b%2==1&&i!=k) p=!p;
-        } 
+        cin >> a[i];
+    }
+    if (b%2==0) {
+        if (a[k]%2==0) p=0; else p=1;
+    } else {
+        for (int i=1;i<=k;i++) {
+            if (a[i]%2==1) p=!p;
+        }
     }
     if (p) cout << "odd" << endl; else cout << "even" << endl;
     cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;

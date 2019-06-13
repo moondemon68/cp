@@ -42,6 +42,6 @@ int main () {
             cout << maxi << endl;
         }
     }
-    cerr << "time=" << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
+    //cerr << "time=" << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
 }

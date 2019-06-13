@@ -1,43 +1,47 @@
 #include <bits/stdc++.h>
-
+#define fi first
+#define se second
+#define pb push_back
+#define mp make_pair
+#define MOD 1000000007
+#define pii pair<int,int>
+#define LL long long
 using namespace std;
 
-bool check(string a,string b) {
-	for (int i=0;i<a.size();i++) {
-		if (a[i]!=b[i]) return 0;
-	}
-	return 1;
-}
-
 int main () {
+	//clock_t start = clock();
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 	int tc;
 	cin >> tc;
-	for (int t=1;t<=tc;t++) {
+	while (tc--) {
 		int n;
 		cin >> n;
-		vector<string> b[11];
+		set<string> p;
+		vector<string> f;
 		for (int i=1;i<=n;i++) {
 			string s;
 			cin >> s;
-			b[s.size()].push_back(s);
+			f.pb(s);
+			p.insert(s);
 		}
-		bool y=1;
-		for (int i=1;i<10;i++) {
-			for (int j=0;j<b[i].size();j++) {
-				for (int k=i+1;k<=10;k++) {
-					for (int l=0;l<b[k].size();l++) {
-						if (check(b[i][j],b[k][l])) {
-							y=0;
-							break;
-						}
-					}
-					if (!y) break;
+		bool y=0;
+		for (int i=0;i<f.size();i++) {
+			while (!f[i].empty()) {
+				f[i].erase(f[i].end()-1,f[i].end());
+				//cout << f[i] << endl;
+				auto it=p.find(f[i]);
+				if (it!=p.end()) {
+					y=1;
+					break;
 				}
-				if (!y) break;
 			}
-			if (!y) break;
+			if (y) break;
 		}
-		if (y) cout << "YES" << endl; else cout << "NO" << endl;
+		if (!y) cout << "YES"; else cout << "NO";
+		cout << endl;
 	}
+	//cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
 	return 0;
 }
