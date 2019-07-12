@@ -63,7 +63,7 @@ int main () {
         a.pb(cnt);
     }
     sort (a.begin(),a.end());
-    LL ans=1234567890987654321;
+    LL ans=0,l=0,h=1234567890987654321;
     for (LL i=0;i<a.size();i++) {
         ans=min(ans,a[i]*k+(b-a[i])*h);
     }
