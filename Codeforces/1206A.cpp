@@ -13,20 +13,21 @@ int main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int tc;
-    cin >> tc;
-    while (tc--) {
-        int n;
-        cin >> n;
-        int a[n+5];
-        for (int i=1;i<=n;i++) cin >> a[i];
-        sort (a+1,a+n+1);
-        int ans=0;
-        for (int i=1;i<=n-2;i++) {
-            if (a[n]>=i+1&&a[n-1]>=i+1) ans=i;
-        }
-        cout << ans << endl;
+    int n,m;
+    cin >> n;
+    int maxi=0,maxj=0;
+    for (int i=1;i<=n;i++) {
+        int x;
+        cin >> x;
+        maxi=max(x,maxi);
     }
+    cin >> m;
+    for (int i=1;i<=m;i++) {
+        int x;
+        cin >> x;
+        maxj=max(x,maxj);
+    }
+    cout << maxi << " " << maxj << endl;
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
 }

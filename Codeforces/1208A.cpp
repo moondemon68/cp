@@ -16,16 +16,13 @@ int main () {
     int tc;
     cin >> tc;
     while (tc--) {
-        int n;
-        cin >> n;
-        int a[n+5];
-        for (int i=1;i<=n;i++) cin >> a[i];
-        sort (a+1,a+n+1);
-        int ans=0;
-        for (int i=1;i<=n-2;i++) {
-            if (a[n]>=i+1&&a[n-1]>=i+1) ans=i;
-        }
-        cout << ans << endl;
+        int a,b,c;
+        cin >> a >> b >> c;
+        int x=a^b;
+        if (c%3==2) cout << x;
+        else if (c%3==1) cout << b;
+        else cout << a;
+        cout << endl;
     }
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
