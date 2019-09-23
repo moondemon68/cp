@@ -17,10 +17,24 @@ int main () {
     cin >> n >> k;
     string s;
     cin >> s;
-    bool d[n+5];
-    memset (d,0,sizeof(d));
-    for (int i=1;i<=n;i++) {
-        if ()
+    if (k==0) {
+        cout << s << endl;
+    } else {
+        if (n==1&&s[0]!='0') {
+            cout << 0 << endl;
+            return 0;
+        }
+        if (s[0]!='1') {
+            s[0]='1';
+            k--;
+        }
+        for (int i=1;i<s.size();i++) {
+            if (s[i]!='0'&&k>0) {
+                s[i]='0';
+                k--;
+            }
+        }
+        cout << s << endl;
     }
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
