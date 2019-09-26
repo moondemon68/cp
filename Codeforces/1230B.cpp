@@ -20,7 +20,7 @@ int main () {
     if (k==0) {
         cout << s << endl;
     } else {
-        if (n==1&&s[0]!='0') {
+        if (n==1) {
             cout << 0 << endl;
             return 0;
         }

@@ -8,6 +8,26 @@
 #define LL long long
 using namespace std;
 
+vector<pii> e;
+int test(vector<int> g) {
+    int ans=0;
+    bool done[10][10];
+    memset(done,0,sizeof(done));
+    for (int i=0;i<e.size();i++) {
+        int x=e[i].fi,y=e[i].se;
+        x=g[x-1];
+        y=g[y-1];
+        if (x>y) swap(x,y);
+        x=min(6,x);
+        y=min(6,y);
+        if (!done[x][y]) {
+            done[x][y]=1;
+            ans++;
+        }
+    }
+    return ans;
+}
+
 int main () {
     //clock_t start = clock();
     ios_base::sync_with_stdio(false);
@@ -15,26 +35,22 @@ int main () {
     cout.tie(NULL);
     int n,m;
     cin >> n >> m;
-    // if (n<=6) {
-    //     cout << m << endl;
-    //     return 0;
-    // }
-    bool adj[n+5][n+5];
-    memset (adj,0,sizeof(adj));
+    if (n<=6) {
+        cout << m << endl;
+        return 0;
+    }
     for (int i=1;i<=m;i++) {
         int x,y;
         cin >> x >> y;
-        if (x>y) swap(x,y);
-        adj[x][y]=1;
+        e.pb(mp(x,y));
     }
-    int p[n+5];
-    memset (p,0,sizeof(p));
-    for (int i=1;i<=n;i++) {
-        for (int j=1;j<=n;j++) {
-            if (adj[i][j]) p[i]++;
-        }
-    }  
-    for (int i=1;i<=n;i++) cout << p[i] << ' ';
+    vector<int> g;
+    for (int i=1;i<=7;i++) g.pb(i); 
+    int ans=0;
+    do {
+        ans=max(ans,test(g));
+    } while (next_permutation(g.begin(),g.end()));
+    cout << ans << endl;
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
 }

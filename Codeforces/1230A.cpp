@@ -22,11 +22,14 @@ int main () {
         return 0;
     }
     tot/=2;
-    for (int i=0;i<4;i++) {
-        for (int j=i+1;j<4;j++) {
-            if ((a[i]+a[j])==tot) {
-                cout << "YES" << endl;
-                return 0;
+    a[4]=0;
+    for (int i=0;i<=4;i++) {
+        for (int j=i+1;j<=4;j++) {
+            for (int k=j+1;k<=4;k++) {
+                if (a[i]+a[j]+a[k]==tot) {
+                    cout << "YES" << endl;
+                    return 0;
+                }
             }
         }
     }
