@@ -65,9 +65,13 @@ int kuchikamizake(int x) {
     return !((x & ans)+~ans+1); // x&ans == ans
 }
 
-// wtf?
+// abs?
 unsigned katawaredoki(unsigned uf) {
+    unsigned mask = 0x7FFFFFFF;
+    unsigned nan = 0x7F800001;
+    unsigned ans = uf & mask;
 
+    if (ans >= nan) return uf; else return ans;
 }
 
 // balik urutan byte dari x
@@ -95,12 +99,8 @@ int tessie(int x) {
 // return x*3/4 - BLOM AC - case -2147483648;
 int sayaka (int x) {
     int p = x + (x << 1);
-    int neg = (p >> 31);
-    p = p + neg;
-    p = p ^ neg;
-    p = p >> 2;
-    p = p + neg;
-    p = p ^ neg;
+    int plus = 0x3 & (p >> 31);
+    p = (p + plus) >> 2;
     return p;
 }
 
@@ -111,6 +111,35 @@ int koi(int x) {
     ans = ans >> 31;
     ans = ans & 1;
     return ans;
+}
+
+// x*3/4 without overflow
+int mitsuha(int x) {
+    int div = (x >> 2);
+    int rem = (x & 0x3);
+    div = div + (div << 1);
+    rem = rem + (rem << 1);
+    return div + ((rem + (x >> 31 & 0x3)) >> 2);
+}
+
+
+// 0.5*f
+unsigned taki(unsigned uf) {
+    unsigned mask = 0x7F800000;
+    unsigned exp = (uf & mask);
+    if (exp == mask) return uf;
+    else {
+        unsigned exp7 = (uf & 0x7F000000);
+        unsigned mod4 = (uf & 0x3);
+        unsigned ret = uf;
+        if (exp7) ret = ret + 0xFF800000;
+        else {
+            ret = ret >> 1;
+            if (mod4 == 3) ret = ret + 1;
+            if (uf & 0x80000000) ret = ret + 0x40000000;
+        }
+        return ret;
+    }
 }
 
 int a[]={4,333,16518380};
@@ -169,7 +198,11 @@ int main () {
         cout << sayaka(-4) << endl;
         cout << "salah5" << endl;
     }
-
+    // while (1) {
+    //     int x;
+    //     cin >> x;
+    //     cout << sayaka(x) << " " << (x*3/4) << endl;
+    // }
 
     // while (1) {
     //     int x;
@@ -182,5 +215,17 @@ int main () {
     //         cout << koi(i) << " " << (i != 0) << endl;
     //     }
     // }
+
+    // while (1) {
+    //     int x;
+    //     cin >> x;
+    //     cout << mitsuha(x) << " " << (x*3/4) << endl;
+    // }
+
+    while (1) {
+        unsigned x;
+        cin >> x;
+        cout << taki(x) << " " << 0.5*x << endl;
+    }
     return 0;
 }
