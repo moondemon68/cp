@@ -65,9 +65,11 @@ int kuchikamizake(int x) {
     return !((x & ans)+~ans+1); // x&ans == ans
 }
 
-// wtf?
+// absolute function
 unsigned katawaredoki(unsigned uf) {
-
+    unsigned neg = (uf>>31) & 0x1;
+    if (neg && (uf != -2147483648)) return (~uf + 1);
+    return uf; 
 }
 
 // balik urutan byte dari x
@@ -92,7 +94,7 @@ int tessie(int x) {
     return ans;
 }
 
-// return x*3/4 - BLOM AC - case -2147483648;
+// return x*3/4 - BLOM AC - case -2147483648 >> gatau jawabannya kebalik tandanya;
 int sayaka (int x) {
     int p = x + (x << 1);
     int neg = (p >> 31);
@@ -170,6 +172,11 @@ int main () {
         cout << "salah5" << endl;
     }
 
+    while (1) {
+        int x;
+        cin >> x;
+        cout << katawaredoki(x) << " " << abs(x) << endl;
+    }
 
     // while (1) {
     //     int x;
