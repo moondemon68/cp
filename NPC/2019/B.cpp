@@ -1,3 +1,4 @@
+// Implementation of RSA Decryption for small numbers (n, e, c up to 10^9)
 #include<bits/stdc++.h>
 #define fi first
 #define se second
@@ -42,6 +43,16 @@ LL poww(LL a, LL b, LL mod) {
 }
 
 int main() {
+    /*
+    tc = number of testcases
+    n = modulus
+    e = public exponent
+    c = ciphertext
+    p,q = prime factorization of n
+    phi = totient of n
+    d = private exponent
+    m = plaintext message
+    */
     int tc;
     cin >> tc;
     while (tc--) {

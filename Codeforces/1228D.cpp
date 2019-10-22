@@ -19,12 +19,12 @@ int main () {
     memset (v,0,sizeof(v));
     int t[n+5];
     vector<int> adj[n+5];
-    set<pii> edge;
+    vector<pii> edge;
     for (int i=1;i<=m;i++) {
         int x,y;
         cin >> x >> y;
         if (x>y) swap(x,y);
-        edge.insert(mp(x,y));
+        edge.pb(mp(x,y));
         adj[x].pb(y);
         adj[y].pb(x);
     }
@@ -98,7 +98,13 @@ int main () {
         cout << -1 << endl;
         return 0;
     }
-    
+    for (int i=0;i<edge.size();i++) {
+        int x=v[edge[i].fi], y=v[edge[i].se];
+        if (x == y) {
+            cout << -1 << endl;
+            return 0;
+        }
+    }
 
     for (int i=1;i<=n;i++) cout << v[i] << " ";
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
