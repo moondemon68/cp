@@ -13,14 +13,24 @@ int main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n;
-    cin >> n;
-    for (int i=1;i<=n;i++) {
-        for (int j=1;j<=n;j++) {
-            cout << "(1/" << i+j-1 << "*x_" << j << ")";
-            if (j<n) cout << "+"; else if (j==n) cout << "=";
+    int tc;
+    cin >> tc;
+    while (tc--) {
+        LL x;
+        cin >> x;
+        LL cnt=1;
+        for (LL i=2;i*i<=x;i++) {
+            if (x%i==0) {
+                LL p = 0;
+                while (x%i==0) {
+                    p++;
+                    x/=i;
+                }
+                cnt *= 2*p+1;
+            }
         }
-        cout << (i==1?1:0) << "; ";
+        if (x>1) cnt *= 2*1+1;
+        cout << cnt/2 << endl;
     }
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
