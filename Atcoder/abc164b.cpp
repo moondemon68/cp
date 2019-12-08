@@ -4,7 +4,6 @@
 #define pb push_back
 #define mp make_pair
 #define MOD 1000000007
-#define INF 1234567890
 #define pii pair<int,int>
 #define LL long long
 using namespace std;
@@ -14,9 +13,16 @@ int main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int k,x;
-    cin >> k >> x;
-    for (int i=x-k+1;i<=x+k-1;i++) cout << i << " ";
+    int n;
+    string s;
+    cin >> n >> s;
+    for (int i=0;i<s.size();i++) {
+        for (int j=0;j<n;j++) {
+            s[i]++;
+            if (s[i] > 'Z') s[i] = 'A';
+        }
+    }
+    cout << s << endl;
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
 }
