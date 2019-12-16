@@ -65,13 +65,6 @@ int kuchikamizake(int x) {
     return !((x & ans)+~ans+1); // x&ans == ans
 }
 
-<<<<<<< HEAD
-// absolute function
-unsigned katawaredoki(unsigned uf) {
-    unsigned neg = (uf>>31) & 0x1;
-    if (neg && (uf != -2147483648)) return (~uf + 1);
-    return uf; 
-=======
 // abs?
 unsigned katawaredoki(unsigned uf) {
     unsigned mask = 0x7FFFFFFF;
@@ -79,7 +72,6 @@ unsigned katawaredoki(unsigned uf) {
     unsigned ans = uf & mask;
 
     if (ans >= nan) return uf; else return ans;
->>>>>>> 851b17ca862099873165ad7de1cf83d69383cc07
 }
 
 // balik urutan byte dari x
@@ -206,20 +198,11 @@ int main () {
         cout << sayaka(-4) << endl;
         cout << "salah5" << endl;
     }
-<<<<<<< HEAD
-
-    while (1) {
-        int x;
-        cin >> x;
-        cout << katawaredoki(x) << " " << abs(x) << endl;
-    }
-=======
     // while (1) {
     //     int x;
     //     cin >> x;
     //     cout << sayaka(x) << " " << (x*3/4) << endl;
     // }
->>>>>>> 851b17ca862099873165ad7de1cf83d69383cc07
 
     // while (1) {
     //     int x;
