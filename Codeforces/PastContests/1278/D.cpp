@@ -35,23 +35,28 @@ int main () {
     cin >> n;
     pii p[n+5];
     for (int i=1;i<=n;i++) cin >> p[i].fi >> p[i].se;
-    sort (p+1,p+n+1);
-    int cnt=0;
+    vector<pii> v;
     for (int i=1;i<=n;i++) {
-        for (int j=i+1;j<=n;j++) {
-            if (p[j].fi > p[i].se) break;
-            else {
-                if (p[j].se > p[i].se) {
-                    cnt++;
-                    //cout << i << " " << j << endl;
-                    adj[i].pb(j);
-                    adj[j].pb(i);
-                }
-                if (cnt >= n) {
-                    cout << "NO" << endl;
-                    return 0;
-                }
+        v.pb(mp(p[i].fi, i));
+        v.pb(mp(p[i].se, i));
+    }
+    sort (v.begin(), v.end());
+    int cnt=0;
+    set<pii> s;
+    for (auto it : v) {
+        if (cnt >= n) break;
+        if (s.find(it) != s.end()) {
+            s.erase(it);
+        } else {
+            int i = it.se, x = p[i].se;
+            for (auto jt : s) {
+                if (jt.fi > x) break;
+                int j = jt.se;
+                adj[i].pb(j);
+                adj[j].pb(i);
+                cnt++;
             }
+            s.insert(mp(p[i].se, i));
         }
     }
     if (cnt != n-1) {
