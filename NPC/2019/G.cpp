@@ -74,8 +74,10 @@ int main () {
     c[nc]=c[0];
     ans=0;
     //cout << endl;
+    cout << c[0].x << c[0].y << endl;
     for (LL i=1;i<nc-1;i++) {
         ans+=abs(triangleArea(c[0], c[i], c[i+1]));
+        cout << c[i].x << c[i].y << endl;
     }
     cout << fixed << setprecision(2) << ans/2 << endl;
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
