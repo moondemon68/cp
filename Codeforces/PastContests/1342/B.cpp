@@ -4,6 +4,7 @@
 #define pb push_back
 #define mp make_pair
 #define MOD 1000000007
+#define INF 1234567890
 #define pii pair<int,int>
 #define LL long long
 using namespace std;
@@ -15,23 +16,21 @@ int main () {
     cout.tie(NULL);
     int tc;
     cin >> tc;
-    for (int t=1;t<=tc;t++){
-        int ans = -1;
-        int x,y;
+    while (tc--) {
         string s;
-        cin >> x >> y >> s;
+        cin >> s;
+        int o = 0, z = 0;
         for (int i=0;i<s.size();i++) {
-            if (s[i] == 'S') y--;
-            else if (s[i] == 'N') y++;
-            else if (s[i] == 'E') x++;
-            else x--;
-            if ((abs(x) + abs(y)) <= (i+1)) {
-                ans = i+1;
-                break;
-            }
+            if (s[i] == '1') o++; else z++;
         }
-        if (ans == -1) cout << "Case #" << t << ": " << "IMPOSSIBLE" << endl;
-        else cout << "Case #" << t << ": " << ans << endl;
+        if (o == 0 || z == 0) {
+            cout << s << endl;
+        } else {
+            for (int i=0;i<s.size();i++) {
+                cout << 10;
+            }
+            cout << endl;
+        }
     }
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
