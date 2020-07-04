@@ -4,7 +4,8 @@
 #define pb push_back
 #define mp make_pair
 #define MOD 1000000007
-#define pii pair<int,int>
+#define INF 1234567890
+#define pii pair<LL,LL>
 #define LL long long
 using namespace std;
 
@@ -13,44 +14,62 @@ int main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int n;
+    LL n;
     cin >> n;
-    LL a[n+5];
-    for (int i=1;i<=n;i++) cin >> a[i];
-    LL b[n+5];
-    for (int i=1;i<=n;i++) cin >> b[i];
-    LL tota=0,totb=0;
-    for (int i=1;i<=n;i++) {
-        tota+=a[i];
-        totb+=b[i];
+    LL b[n+5], tot = 0;
+    pii a[n+5];
+    for (LL i=1;i<=n;i++) {
+        cin >> a[i].fi;
+        a[i].se = i;
+        tot += a[i].fi;
     }
-    if (tota!=totb) {
+    for (LL i=1;i<=n;i++) {
+        cin >> b[i];
+        tot -= b[i];
+    }
+    sort (a+1,a+n+1);
+    sort (b+1,b+n+1);
+    if (tot != 0) {
         cout << "NO" << endl;
         return 0;
     }
-    pair<LL,int> s[n+5],t[n+5];
-    for (int i=1;i<=n;i++) {
-        s[i]=mp(a[i],i);
-        t[i]=mp(b[i],i);
+    LL d[n+5];
+    for (LL i=1;i<=n;i++) d[i] = b[i]-a[i].fi;
+    LL p = 0;
+    for (LL i=1;i<=n;i++) {
+        p += d[i];
+        if (p < 0) {
+            cout << "NO" << endl;
+            return 0;
+        }
     }
-    sort (s+1,s+n+1);
-    sort (t+1,t+n+1);
-    int x=n;
-    for (int i=1;i<=n;i++) {
-        while (s[i].fi<t[i].fi) {
-            LL d=t[i].fi-s[i].fi,lim=t[x].fi-s[x].fi;
-            if (d<s[x].fi) {
-                s[x].fi-=min(d,lim);
-                s[i].fi+=min(d,lim);
-                d-=min(d,lim);
-            } else {
-                s[i].fi+=s[x].fi;
-                s[x].fi=0;
-                x--;
+    stack<pii> s;
+    vector<LL> ansa, ansb, ansc;
+    for (LL i=1;i<=n;i++) {
+        if (d[i] == 0) continue;
+        if (d[i] > 0) {
+            s.push({d[i], a[i].se});
+        } else {
+            d[i] *= -1;
+            while (d[i] > 0) {
+                pii cur = s.top();
+                s.pop();
+                LL mov = min(cur.fi, d[i]);
+                ansa.pb(cur.se);
+                ansb.pb(a[i].se);
+                ansc.pb(mov);
+                cur.fi -= mov;
+                d[i] -= mov;
+                if (cur.fi > 0) {
+                    s.push(cur);
+                }
             }
         }
-        for (int j=1;j<=n;j++) cout << s[j].fi << " ";
-        cout << endl;
+    }
+    cout << "YES" << endl;
+    cout << ansa.size() << endl;
+    for (LL i=0;i<ansa.size();i++) {
+        cout << ansa[i] << " " << ansb[i] << " " << ansc[i] << endl;
     }
     //cerr << fixed << setprecision(3) << (clock()-start)*1./CLOCKS_PER_SEC << endl;
     return 0;
