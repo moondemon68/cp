@@ -8,6 +8,8 @@
         "type_traits": "cpp",
         "xstring": "cpp",
         "xutility": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "tuple": "cpp",
+        "vector": "cpp"
     }
 }

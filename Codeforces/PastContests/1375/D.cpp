@@ -22,42 +22,43 @@ int main () {
         int a[n+5];
         for (int i=0;i<n;i++) cin >> a[i];
         vector<int> ans;
+        set<int> s;
+        for (int j=0;j<n;j++) {
+            s.insert(a[j]);
+        }
+        int mex = 0;
+        while (s.find(mex) != s.end()) mex++;
+        while (mex != n) {
+            ans.pb(mex+1);
+            a[mex] = mex;
+            set<int> ss;
+            for (int j=0;j<n;j++) {
+                ss.insert(a[j]);
+            }
+            int mexx = 0;
+            while (ss.find(mexx) != ss.end()) mexx++;
+            mex = mexx;
+        }
+        // for (int i=0;i<n;i++) cout << a[i] << " ";
+        // cout << endl;
+        // return 0;
+        bool vis[n+5];
+        memset (vis,0,sizeof(vis));
         for (int i=0;i<n;i++) {
-            if (a[i] == i) continue;
-            bool y = 1;
-            for (int j=i;j<n-1;j++) {
-                if (a[j] > a[j+1]) y = 0;
-            }
-            if (y) break;
-            set<int> s;
-            for (int j=0;j<n;j++) {
-                s.insert(a[j]);
-            }
-            int mex = 0;
-            while (s.find(mex) != s.end()) mex++;
-            for (int j=n-1;j>=i+1;j--) {
-                if (a[j] == i) {
-                    ans.pb(j+1);
-                    a[j] = mex;
-                    s.insert(a[j]);
-                    while (s.find(mex) != s.end()) mex++;
+            if (vis[i]) continue;
+            if (a[i] != i) {
+                ans.pb(i+1);
+                int x = a[i];
+                while (x != i) {
+                    // cout << i+1 << endl;
+                    ans.pb(x+1);
+                    vis[x] = 1;
+                    x = a[x];
                 }
+                ans.pb(x+1);
+                vis[x] = 1;
             }
-
-            set<int> tt;
-            for (int j=0;j<n;j++) {
-                tt.insert(a[j]);
-            }
-            int x = 0;
-            while (tt.find(x) != tt.end()) x++;
-            
-            ans.pb(i+1);
-            a[i] = x;
         }
-        if (a[n-1] < a[n-2]) {
-            ans.pb(n);
-        }
-        if (ans.size() > 2*n) while(1);
         cout << ans.size() << endl;
         for (int i=0;i<ans.size();i++) cout << ans[i] << " ";
         cout << endl;
