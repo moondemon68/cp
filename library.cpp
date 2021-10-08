@@ -190,3 +190,19 @@ LL queryRange(int v, int s, int e, int l, int r){
     LL p2 = queryRange(2*v+1, m+1, e, l, r);
     return p1 + p2;
 }
+
+
+// DSU
+LL pset[100005], n;
+void init() {
+    for (LL i=1;i<=n;i++) pset[i] = i;
+}
+LL findSet(LL u) {
+    return pset[u] == u ? u : pset[u] = findSet(pset[u]);
+}
+LL isSameSet(LL u, LL v) {
+    return findSet(u) == findSet(v);
+}
+void unionSet(LL u, LL v) {
+    pset[findSet(u)] = findSet(v);
+}

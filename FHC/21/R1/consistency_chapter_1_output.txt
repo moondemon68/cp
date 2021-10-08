@@ -1,0 +1,11 @@
+O 0
+OX 1
+OXO 2
+OXOX 3
+X 0
+XO 1
+XOX 2
+O 0
+OX 1
+X 0
+10
